@@ -13,7 +13,23 @@ export default function Home() {
             Reprehenderit ad esse et non officia in nulla. Id proident tempor
             incididunt nostrud nulla et culpa.
           </p>
-          <form className="mx-auto mt-10 flex max-w-md gap-x-4">
+
+          <form className="mx-auto mt-10 flex max-w-xl gap-x-4">
+            <label
+              htmlFor="method"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              Select
+            </label>
+            <select
+              id="method"
+              name="method"
+              className=" block  rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              defaultValue="https:"
+            >
+              <option>https:</option>
+              <option>http:</option>
+            </select>
             <label htmlFor="email-address" className="sr-only">
               Email address
             </label>
@@ -23,7 +39,7 @@ export default function Home() {
               type="email"
               autoComplete="email"
               required
-              className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
+              className="min-w-8 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
               placeholder="Enter your Link"
             />
             <button
@@ -33,32 +49,6 @@ export default function Home() {
               Generate Short Link
             </button>
           </form>
-          <svg
-            viewBox="0 0 1024 1024"
-            className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2"
-            aria-hidden="true"
-          >
-            <circle
-              cx={512}
-              cy={512}
-              r={512}
-              fill="url(#759c1415-0410-454c-8f7c-9a820de03641)"
-              fillOpacity="0.7"
-            />
-            <defs>
-              <radialGradient
-                id="759c1415-0410-454c-8f7c-9a820de03641"
-                cx={0}
-                cy={0}
-                r={1}
-                gradientUnits="userSpaceOnUse"
-                gradientTransform="translate(512 512) rotate(90) scale(512)"
-              >
-                <stop stopColor="#7775D6" />
-                <stop offset={1} stopColor="#E935C1" stopOpacity={0} />
-              </radialGradient>
-            </defs>
-          </svg>
         </div>
       </div>
     </section>
