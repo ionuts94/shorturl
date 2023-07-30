@@ -29,7 +29,8 @@ export const Select: React.FC<SelectProps> = ({
 
   return (
     <select
-      className={twMerge(` 
+      className={twMerge(`
+        text-sm
         block  
         rounded-md 
         border-0 
@@ -39,8 +40,8 @@ export const Select: React.FC<SelectProps> = ({
         ring-1 
         ring-inset 
         ring-gray-300 focus:ring-2 
-        focus:ring-indigo-60
-        0 sm:text-sm sm:leading-6
+        focus:ring-indigo-600 
+        sm:leading-6
       `, className)}
       defaultValue={defaultValue || localValue}
       onChange={handleSelectChange}

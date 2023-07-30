@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -7,9 +8,10 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type?: string;
   name?: string;
   id?: string;
+  className?: string;
 }
 
-export const Input: React.FC<InputProps> = ({ onChange, value, ...rest }) => {
+export const Input: React.FC<InputProps> = ({ onChange, value, className, ...rest }) => {
   const [localValue, setLocalValue] = useState<string>('');
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -23,7 +25,7 @@ export const Input: React.FC<InputProps> = ({ onChange, value, ...rest }) => {
   return (
     <input
       value={value || localValue}
-      className="
+      className={twMerge(`
       min-w-8 f
       lex-auto 
       rounded-md 
@@ -40,7 +42,7 @@ export const Input: React.FC<InputProps> = ({ onChange, value, ...rest }) => {
       focus:ring-inset 
       focus:ring-white 
       sm:text-sm 
-      sm:leading-6"
+      sm:leading-6`, className)}
       onChange={handleInputChange}
       {...rest}
     />

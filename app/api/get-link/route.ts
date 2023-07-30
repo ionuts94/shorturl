@@ -3,15 +3,18 @@ import { NextResponse } from "next/server";
 import { sql } from '@vercel/postgres';
 
 export async function POST(request: Request) {
-  console.log('------------------------------');
-  const { name } = await request.json();
-  const data = await sql``;
+  const { shortCode } = await request.json();
 
-  console.log(name);
+  const data = await sql`
+    SELECT * 
+    FROM links 
+    WHERE short_code=${shortCode}
+  `;
 
-  return NextResponse.json({ data: 'cool' })
+  return NextResponse.json({ data })
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+  console.log(request);
   return NextResponse.json({ get: 'fine' })
 }
