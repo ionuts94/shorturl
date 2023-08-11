@@ -39,11 +39,12 @@ export const postData = async ({ url, data }: PostDataArgument) => {
   const res: Response = await fetch(url, {
     method: 'POST',
     headers: new Headers({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     }),
     credentials: 'same-origin',
     body: JSON.stringify(data),
-    cache: 'no-store'
+    cache: 'no-store',
+    mode: 'no-cors'
   });
 
   if (!res.ok) {
