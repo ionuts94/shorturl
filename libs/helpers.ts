@@ -60,5 +60,9 @@ export const getEnvURL = () => {
     process.env.NEXT_PUBLIC_VERCEL_URL ??
     'http://localhost:3000'
 
+  if (!url.includes('http')) {
+    url += 'https://' + url;
+  }
+
   return url;
 }
