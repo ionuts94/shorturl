@@ -61,7 +61,7 @@ export const getEnvURL = () => {
     'http://localhost:3000'
 
   if (!url.includes('http')) {
-    url += 'https://' + url;
+    url = 'https://' + url;
   }
 
   return url;
