@@ -16,7 +16,6 @@ interface InitialFormState {
 
 export const GenerateLinkForm = () => {
   const router = useRouter();
-  console.log(router);
 
   const [formState, setFormState] = useState<InitialFormState>({
     traffic: 'https://',
@@ -30,23 +29,36 @@ export const GenerateLinkForm = () => {
     })
   }
 
+  function handleHttpInLink() {
+    let newFormState = {
+      ...formState
+    }
+
+    if (formState.link.includes('https://')) {
+      newFormState = {
+        traffic: 'https://',
+        link: formState.link.slice(8, formState.link.length)
+      }
+    } else if (formState.link.includes('http://')) {
+      newFormState = {
+        traffic: 'http://',
+        link: formState.link.slice(7, formState.link.length)
+      }
+    }
+
+    return newFormState;
+  }
+
   async function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(`submiting form`);
-    console.log(formState);
-
     const url = getEnvURL();
-
-    console.log(`---------URL: ${url}----------`);
-
+    const newFormState = handleHttpInLink();
     const res: APIResponse = await postData({
       url: `${url}/api/generate-link`,
       data: {
-        link: `${formState.traffic}${formState.link}`
+        link: `${newFormState.traffic}${newFormState.link}`
       }
     });
-
-    console.log(res);
 
     if (!res.ok) {
       toast.error(res.error);

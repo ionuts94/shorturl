@@ -6,8 +6,6 @@ type GetDataArgument = {
 }
 
 export const getData = async ({ url, data }: GetDataArgument) => {
-  console.log('POST REQUEST', url, data);
-
   const res: Response = await fetch(url, {
     method: 'POST',
     headers: new Headers({
@@ -15,7 +13,8 @@ export const getData = async ({ url, data }: GetDataArgument) => {
     }),
     credentials: 'same-origin',
     body: JSON.stringify(data),
-    cache: 'no-store'
+    cache: 'no-store',
+    mode: 'no-cors'
   });
 
   if (!res.ok) {
@@ -34,25 +33,28 @@ type PostDataArgument = {
 }
 
 export const postData = async ({ url, data }: PostDataArgument) => {
-  console.log('POST REQUEST', url, data);
+  try {
+    const res: Response = await fetch(url, {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      credentials: 'same-origin',
+      body: JSON.stringify(data),
+      cache: 'no-store',
+      mode: 'no-cors'
+    });
 
-  const res: Response = await fetch(url, {
-    method: 'POST',
-    headers: new Headers({
-      'Content-Type': 'application/json',
-    }),
-    // credentials: 'same-origin',
-    body: JSON.stringify(data),
-    cache: 'no-store',
-    mode: 'no-cors'
-  });
+    if (!res.ok) {
+      console.log('Error in POST', { url, data, res });
+      throw new Error(res.statusText);
+    }
 
-  if (!res.ok) {
-    console.log('Error in POST', { url, data, res });
-    throw new Error(res.statusText);
+    return res.json();
+
+  } catch (err) {
+    console.log('error: ', err);
   }
-
-  return res.json();
 }
 
 export const getEnvURL = () => {

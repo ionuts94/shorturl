@@ -24,17 +24,11 @@ export async function GET(request: Request) {
   }
 
   try {
-    console.log(url);
-    console.log(shortCode);
-
     const data = await sql`
       SELECT * 
       FROM links 
       WHERE short_code=${shortCode}
     `;
-
-    console.log(data);
-
 
     if (data.rows.length === 0) {
       // TODO: short code not found in database

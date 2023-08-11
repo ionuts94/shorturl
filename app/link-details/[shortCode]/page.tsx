@@ -20,9 +20,6 @@ const LinkDetailsPage: React.FC<LinkDetailsPageProps> = async ({ params }) => {
     }
   });
 
-  console.log(`linkData:`);
-  console.log(linkData.data.rows);
-
   return (
     <main
       className='
