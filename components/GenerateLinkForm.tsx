@@ -36,6 +36,9 @@ export const GenerateLinkForm = () => {
     console.log(formState);
 
     const url = getEnvURL();
+
+    console.log(`---------URL: ${url}----------`);
+
     const res: APIResponse = await postData({
       url: `${url}/api/generate-link`,
       data: {
